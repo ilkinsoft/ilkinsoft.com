@@ -1,0 +1,71 @@
+﻿@using System.Data.Entity
+@using Microsoft.AspNet.Identity
+@model List<Kodlarim.Models.Comment>
+
+@{
+    Layout = null;  // bunu vermesem partial view icinde de header footer olacaq :)
+}
+@foreach (var item in Model)
+{
+    string commentDivId = "commentDiv" + item.CommentId;
+    string commentTextId = "commentText" + item.CommentId;
+    string editboxId = "editbox" + item.CommentId;
+    string editCommentInput = "editCommentInput" + item.CommentId;
+
+    <div class="row comment">
+        <div class="col-md-12 content">
+            <div class="left-line" id="@commentDivId">
+                <b class="name theme-forecolor">
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+                </b>
+                &nbsp; &nbsp; &nbsp;
+                <b class="date-time theme-forecolor pull-right">
+                    @Html.DisplayFor(modelItem => item.PostedDateTime)
+                </b>
+                @if (item.ApplicationUser.Id == HttpContext.Current.User.Identity.GetUserId())
+                {
+                    @Ajax.ActionLink(" ", "_DeleteComment", "Post", new { commentId = item.CommentId }, new AjaxOptions()
+               {
+                   HttpMethod = "POST",
+                   UpdateTargetId = commentDivId,
+                   InsertionMode = InsertionMode.Replace,
+                   //LoadingElementId = "loading",
+                   Confirm = "Are you sure to delete comment?"
+                   //OnSuccess = "commentDeleted('"+ commentDivId +"')"
+               }, new { @class = "glyphicon glyphicon-remove-circle pull-right action-button action-delete" })
+
+                    <span id="editComment" onclick="ShowCommentEditBox('@editboxId', '@commentTextId', '@editCommentInput')" class="glyphicon glyphicon-edit pull-right action-edit"></span>
+                }
+                @if (item.EditedDateTime != null)
+                {
+                    <span class="edited pull-right">Edited</span>
+                }
+                <p class="text" id="@commentTextId">
+                    @Html.DisplayFor(modelItem => item.Text)
+                    <div id=@editboxId class="editbox">
+                        @using (Ajax.BeginForm("_EditComment", "Post", new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = commentDivId,
+                            HttpMethod = "POST"
+                            //OnSuccess = "ClearTextareaOnSuccessComment"
+                        }))
+                        {
+                            @Html.AntiForgeryToken()
+                            //@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <textarea name="commentText" id="@editCommentInput" rows="5" class="form-control"></textarea>
+                            //@Html.ValidationMessageFor(model => model.Text, "", new {@class = "text-danger"})
+                            //@Html.HiddenFor(modelItem => item.CommentId)
+                            <input type="hidden" name="commentId" value="@item.CommentId"/>
+                            <input type="hidden" name="postedDateTime" value="@item.PostedDateTime" />
+                            <br/>
+                            <input type="submit" value="Save" class="btn btn-default"/>
+                            <input type="button" value="Cancel edit" class="btn btn-default" onclick="HideCommentEditBox('@editboxId', '@commentTextId')" />
+                        }  
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+    <hr />
+}

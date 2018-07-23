@@ -1,0 +1,14 @@
+﻿
+
+@if (ViewBag.ValidateMessage != null)
+{
+    <label class="label-danger">@ViewBag.ValidateMessage</label>
+}
+else if (ViewBag.SuccessMessage != null)
+{
+    <label class="label-success">@ViewBag.SuccessMessage</label>
+}
+else if (ViewBag.ErrorMessage != null)
+{
+    <label class="label-danger">@ViewBag.ErrorMessage</label>
+}

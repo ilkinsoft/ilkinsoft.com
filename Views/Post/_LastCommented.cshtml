@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Kodlarim.Models.Post>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <div class="linkbox">
+                    <a href="@Url.Action("Details", "Post", new {id = item.PostId})" class="">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </a>
+                </div>
+            }
+        }
+    </div>
+</div>
+

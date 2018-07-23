@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "Home page";
+}
+
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+@* content... *@
+
+@Ajax.ActionLink("Meqaleler", "Test", new AjaxOptions()
+{
+    HttpMethod = "GET",
+    UpdateTargetId = "students",
+    InsertionMode = InsertionMode.Replace
+})
+
+<div id="students">
+
+</div>
+
+<div class="row">
+    <div class="col-md-11">
+        <div class="row">
+            <div class="media col-md-12 post-summary">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="~/Content/LocalResources/Posts/dotnetmvc.png" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">Asp.Net Mvc-yə keçdim</h3>
+                    <p>
+                        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that for enjoyable, agile development..
+                    </p>
+                    <div class="icon-panel">
+                        <span class="icon pull-right">
+                            <span class="glyphicon glyphicon-time"></span>21 dek 2015
+                        </span>
+                        <span class="icon pull-right">
+                            <span class="glyphicon glyphicon-heart"></span>27
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="media col-md-12 post-summary">
+                <div class="media-left">
+                    <div class="imagebox">
+                        <a href="#" id="link-content">
+                            <img class="media-object" src="~/Content/LocalResources/Posts/vs.png" alt="...">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="media-body">
+                    <h3 class="media-heading">.NET Mvc Yenilikləri</h3>
+                    <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+                    <div>
+                        <span class="icon pull-right">
+                            <span class="glyphicon glyphicon-time"></span>21 dek 2015
+                        </span>
+                        <span class="icon pull-right">
+                            <span class="glyphicon glyphicon-heart"></span>27
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="media col-md-12 post-summary">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="~/Content/LocalResources/Posts/bootstrap.jpg" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">Bootstrap ilə daha cəld dizayn edin</h3>
+                    
+                    <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                    <div>
+                        <span class="icon pull-right">
+                            <span class="glyphicon glyphicon-time"></span>21 dek 2015
+                        </span>
+                        <span class="icon pull-right">
+                            <span class="glyphicon glyphicon-heart"></span>27
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="media col-md-12 post-summary">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="~/Content/LocalResources/Posts/bootstrap.jpg" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">Bootstrap ilə daha cəld dizayn edin</h3>
+                    <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                    <div>
+                        <span class="icon pull-right">
+                            <span class="glyphicon glyphicon-time"></span>21 dek 2015
+                        </span>
+                        <span class="icon pull-right">
+                            <span class="glyphicon glyphicon-heart"></span>27
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="media col-md-12 post-summary">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="~/Content/LocalResources/Posts/bootstrap.jpg" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">Bootstrap ilə daha cəld dizayn edin</h3>
+                    <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                    <div>
+                        <span class="icon pull-right">
+                            <span class="glyphicon glyphicon-time"></span>21 dek 2015
+                        </span>
+                        <span class="icon pull-right">
+                            <span class="glyphicon glyphicon-heart"></span>27
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-1"></div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/ajax")
+}

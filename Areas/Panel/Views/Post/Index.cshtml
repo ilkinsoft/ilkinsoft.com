@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Kodlarim.Models.Post>
+
+@{
+    ViewBag.Title = "Məqalələr";
+}
+
+<p>
+    @Html.ActionLink("+Yeni", "Create")
+</p>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                @*<h3 class="box-title">Hover Data Table</h3>*@
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PostedDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PostedDate)
+                            </td>
+                            <td>
+                                @if (item.Status.Id == 1)
+                                {
+                                    <span class="label label-success">@item.Status.Name</span>
+                                }
+                                else if (item.Status.Id == 2)
+                                {
+                                    <span class="label label-danger">@item.Status.Name</span>
+                                }
+                                else if (item.Status.Id == 3 || item.Status.Id == 4)
+                                {
+                                    <span class="label label-warning">@item.Status.Name</span>
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink("Redaktə", "Edit", new {id = item.PostId}) |
+                                @Html.ActionLink("Baxış", "Details", new {id = item.PostId}) |
+                                @Html.ActionLink("Sil", "Delete", new {id = item.PostId})
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PostedDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <div class="row">
+                    <div class="col-sm-7"></div>
+                    <div class="col-sm-5">
+                        <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                            <ul class="pagination">
+                                <li class="paginate_button previous disabled" id="example2_previous">
+                                    <a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a>
+                                </li>
+                                <li class="paginate_button active">
+                                    <a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0">1</a>
+                                </li>
+                                <li class="paginate_button ">
+                                    <a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0">2</a>
+                                </li>
+                                <li class="paginate_button ">
+                                    <a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0">3</a>
+                                </li>
+                                <li class="paginate_button ">
+                                    <a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0">4</a>
+                                </li>
+                                <li class="paginate_button ">
+                                    <a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0">5</a>
+                                </li>
+                                <li class="paginate_button ">
+                                    <a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0">6</a>
+                                </li>
+                                <li class="paginate_button next" id="example2_next">
+                                    <a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div><!-- /.col -->
+</div><!-- /.row -->

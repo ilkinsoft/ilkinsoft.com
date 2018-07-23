@@ -1,0 +1,8 @@
+﻿@if (ViewBag.SuccessMessage == null)
+{
+    <div class="alert-danger">@ViewBag.ErrorMessage</div>
+}
+else
+{
+    <div class="alert-success">@ViewBag.SuccessMessage</div>
+}

@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "İstifadəçi rollarını tənzimlə";
+}
+
+@Html.ActionLink("Create New Role", "Create") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
+<hr />
+
+@using (Html.BeginForm("RoleAddToUser", "Roles"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        İstifadəçiyə rol ver
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @*<span class="input-group-addon">@@</span>
+                                    <input name="UserName" type="text" class="form-control" placeholder="İstifadəçi adı">*@
+                                @Html.DropDownList("UserName", (IEnumerable<SelectListItem>)ViewBag.Users, "İstifadəçini seçin..", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Rolu seçin..", new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div> @*row*@
+
+                    @if (ViewBag.ResultMessageAdding != null)
+                    {
+                        <div class="text-green">
+                            @ViewBag.ResultMessageAdding
+                        </div>
+                    }
+                </div> @*box body*@
+                <div class="box-footer">
+                    <input type="submit" value="Əlavə et" class="btn btn-primary btn-flat" />
+                </div>
+            </div>   @*box*@
+
+        </div>
+    </div>
+}
+
+
+@using (Html.BeginForm("GetRoles", "Roles"))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        İstifadəçi rollarını göstər
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @*<span class="input-group-addon">@@</span>
+                                    <input name="UserName" type="text" class="form-control" placeholder="İstifadəçi adı">*@
+                                @Html.DropDownList("UserName", (IEnumerable<SelectListItem>)ViewBag.Users, "İstifadəçini seçin..", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            @if (ViewBag.RolesForThisUser != null)
+                            {
+                                <div class="text-blue">
+                                    <b>Bu istifadəçinin rolları</b>
+                                    <ol>
+                                        @foreach (string s in ViewBag.RolesForThisUser)
+                                        {
+                                            <li>@s</li>
+                                        }
+                                    </ol>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Rolları göstər" class="btn btn-primary btn-flat" />
+                </div>
+            </div> @*box*@
+        </div>
+    </div>
+}
+
+
+@using (Html.BeginForm("DeleteRoleForUser", "Roles"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        İstifadəçi rolunu ləğv et
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @*<span class="input-group-addon">@@</span>
+                                <input name="UserName" type="text" class="form-control" placeholder="İstifadəçi adı">*@
+                                @Html.DropDownList("UserName", (IEnumerable<SelectListItem>)ViewBag.Users, "İstifadəçini seçin..", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Rolu seçin..", new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    @if (ViewBag.ResultMessageDeleting != null)
+                {
+                        <div class="text-green">@ViewBag.ResultMessageDeleting</div>
+                    }
+                </div>
+
+                <div class="box-footer">
+                    <input type="submit" value="Rolu ləğv et" class="btn btn-primary btn-flat" />
+                </div>
+            </div> @*box*@
+        </div>
+    </div>
+}

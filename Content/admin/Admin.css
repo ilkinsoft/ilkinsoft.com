@@ -1,0 +1,54 @@
+﻿body {
+}
+
+
+.msgCopied {
+    display: none;
+    z-index: 10;
+    background: #000;
+    color: #fff;
+    width: 100px;
+    height: 22px;
+    border-radius: 4px;
+    text-align: center;
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+}
+
+.old-img-div {
+    width: 10%;
+    float: left;
+    height: auto;
+    padding: 3px;
+}
+
+    .old-img-div img {
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .old-img-div a {
+        color: #00ACC1;
+        background-color: white;
+        width: 100%;
+        float: left;
+        border: 1px solid #00ACC1;
+        text-align: center;
+    }
+    .old-img-div a:hover {
+        color: white;
+        background-color: #00ACC1;
+    }
+    .old-img-div a:focus{ color: initial }
+
+.loading {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+.loading i {
+    font-size: 36px;
+    color: #00ACC1
+}

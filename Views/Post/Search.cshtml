@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Kodlarim.Models.Post>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search result</h2>
+
+@foreach (var item in Model)
+{
+    <div class="row" id="post-summary">
+        <div class="col-md-12">
+            <a href="@Url.Action("Details", new {id = item.PostId})">
+                <div class="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-image" style="height: 300px; overflow: hidden">
+
+                            @foreach (var img in item.Image)
+                            {
+                                <img style="height: auto; width: 100%" src="~/Images/Meqale/@img.PathMax" />
+                            }
+                        </div>
+                        <div class="carousel-caption">
+                            <h3>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </h3>
+                            <p>
+                                @Html.DisplayFor(modelItem => item.Summary)
+                            </p>
+                            <div class="icon-panel">
+                                <span class="pull-right">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                    @Html.DisplayFor(modelItem => item.PostedDate)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    <br />
+    <br />
+}
